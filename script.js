@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const blogPosts = [
         {
+            id: 1,
             title: 'First Blog Post',
             date: 'July 11, 2024',
             content: 'This is the content of the first blog post.',
@@ -8,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             comments: []
         },
         {
+            id: 2,
             title: 'Second Blog Post',
             date: 'July 12, 2024',
             content: 'This is the content of the second blog post.',
@@ -17,6 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const blogPostsContainer = document.getElementById('blogPosts');
+
+    function loadPostsFromStorage() {
+        const storedPosts = localStorage.getItem('blogPosts');
+        if (storedPosts) {
+            return JSON.parse(storedPosts);
+        }
+        return blogPosts;
+    }
+
+    function savePostsToStorage(posts) {
+        localStorage.setItem('blogPosts', JSON.stringify(posts));
+    }
 
     function renderPosts(posts) {
         blogPostsContainer.innerHTML = '';
@@ -45,23 +59,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.likePost = function(index) {
-        blogPosts[index].likes += 1;
-        renderPosts(blogPosts);
+        const posts = loadPostsFromStorage();
+        posts[index].likes += 1;
+        savePostsToStorage(posts);
+        renderPosts(posts);
     }
 
     window.addComment = function(index) {
+        const posts = loadPostsFromStorage();
         const comment = blogPostsContainer.querySelectorAll('.blog-post')[index].querySelector('textarea').value;
         if (comment) {
-            blogPosts[index].comments.push(comment);
-            renderPosts(blogPosts);
+            posts[index].comments.push(comment);
+            savePostsToStorage(posts);
+            renderPosts(posts);
         }
     }
 
     document.getElementById('searchBar').addEventListener('input', (e) => {
         const searchQuery = e.target.value.toLowerCase();
-        const filteredPosts = blogPosts.filter(post => post.title.toLowerCase().includes(searchQuery) || post.content.toLowerCase().includes(searchQuery));
+        const posts = loadPostsFromStorage();
+        const filteredPosts = posts.filter(post => post.title.toLowerCase().includes(searchQuery) || post.content.toLowerCase().includes(searchQuery));
         renderPosts(filteredPosts);
     });
 
-    renderPosts(blogPosts);
+    renderPosts(loadPostsFromStorage());
 });
