@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+header input {
+    width: 80%;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+main {
+    padding: 1rem;
+}
+
+.blog-post {
+    background: #fff;
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post h2 {
+    margin-top: 0;
+}
+
+.blog-post .meta {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blog-post .actions button {
+    background: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.blog-post .actions button:hover {
+    background: #0056b3;
+}
+
+.blog-post .comments {
+    margin-top: 1rem;
+}
+
+.blog-post .comments textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-post .comments button {
+    display: block;
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.blog-post .comments button:hover {
+    background: #218838;
+}
+
+.blog-post .comments ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.blog-post .comments ul li {
+    background: #f8f9fa;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
